@@ -28,12 +28,6 @@ public:
 // swaps two queues 
 	void swap();
 
-	void erase(size_t pos, size_t count = 1);
-
-
-    void eraseBetween(size_t beginPos, size_t endPos);
-
-
     size_t size() const;
 
 
