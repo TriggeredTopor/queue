@@ -10,7 +10,8 @@ void VectorQueue::push(const ValueType& value)
 
 void VectorQueue::pop()
 {
-	for (size_t i = 0; i < Vector.size()-1; i++) {
+	for (size_t i = 0; i < Vector.size()-1; i++) 
+	{
 		Vector[i] = Vector[i + 1];
 	}
 	Vector.pop_back();
