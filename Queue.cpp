@@ -39,13 +39,13 @@ Queue::Queue(const ValueType* valueArray, const size_t arraySize, QueueContainer
         }
 
         case QueueContainer::Vector:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
-        break;
-    }
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
+            break;
+        }
 
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 
     for (int i = 0; i < arraySize; i++)
