@@ -10,11 +10,13 @@ Queue::Queue(QueueContainer container)
 {
     switch (container)
     {
-    case QueueContainer::List: {
+    case QueueContainer::List: 
+    {
         _pimpl = static_cast<IQueueImplementation*>(new ListQueue());    // конкретизируйте под ваши конструкторы, если надо
         break;
     }
-    case QueueContainer::Vector: {
+    case QueueContainer::Vector: 
+    {
         _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());    // конкретизируйте под ваши конструкторы, если надо
         break;
     }
@@ -74,18 +76,18 @@ Queue::Queue(const Queue& copyStack)
     std::vector<ValueType> temparray;
     const int tempsize = copyStack.size();
 
-    for (int i = (tempsize - 1); i > -1; i--)
+    for (int i = 0; i < tempsize; i++)
     {
         temparray.push_back(copyStack._pimpl->top());
         copyStack._pimpl->pop();
     }
 
-    for (int j = (tempsize - 1); j > -1; j--)
+    for (int j = 0; j < tempsize; j++)
     {
         copyStack._pimpl->push(temparray[j]);
     }
 
-    for (int k = (tempsize - 1); k > -1; k--)
+    for (int k = 0; k < tempsize; k++)
     {
         _pimpl->push(temparray[k]);
     }
@@ -119,18 +121,18 @@ Queue& Queue::operator=(const Queue& copyStack)
     std::vector<ValueType> temparray;
     const int tempsize = copyStack.size();
 
-    for (int i = (tempsize - 1); i > -1; i--)
+    for (int i = 0; i < tempsize; i++)
     {
         temparray.push_back(copyStack._pimpl->top());
         copyStack._pimpl->pop();
     }
 
-    for (int j = (tempsize - 1); j > -1; j--)
+    for (int j = 0; j < tempsize; j++)
     {
         copyStack._pimpl->push(temparray[j]);
     }
 
-    for (int k = (tempsize - 1); k > -1; k--)
+    for (int k = 0; k < tempsize; k++)
     {
         _pimpl->push(temparray[k]);
     }
@@ -143,20 +145,20 @@ Queue::Queue(Queue&& moveStack) noexcept
 {
     switch (_containerType)
     {
-    case QueueContainer::List:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
-        break;
-    }
+        case QueueContainer::List:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
+            break;
+        }
 
-    case QueueContainer::Vector:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
-        break;
-    }
+        case QueueContainer::Vector:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
+            break;
+        }
 
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 
     _pimpl = moveStack._pimpl;
@@ -172,18 +174,18 @@ Queue& Queue::operator=(Queue&& moveStack) noexcept
 
     switch (moveStack._containerType)
     {
-    case QueueContainer::List:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
-        break;
-    }
-    case QueueContainer::Vector:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
-        break;
-    }
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        case QueueContainer::List:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
+            break;
+        }
+        case QueueContainer::Vector:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
+            break;
+        }
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 
     _pimpl = moveStack._pimpl;
@@ -194,12 +196,11 @@ Queue& Queue::operator=(Queue&& moveStack) noexcept
 
 Queue::~Queue()
 {
-    delete _pimpl;        // композиция!
+    delete _pimpl;
 }
 
 void Queue::push(const ValueType& value)
 {
-    // можно, т.к. push определен в интерфейсе
     _pimpl->push(value);
 }
 
