@@ -1,7 +1,9 @@
 #include "ListQueue.h"
 
 ListQueue::ListQueue()
-{}
+{
+	List.clear();
+}
 
 void ListQueue::push(const ValueType& value)
 {
