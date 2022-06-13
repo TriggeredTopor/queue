@@ -45,4 +45,3 @@ private:
 
     QueueContainer _containerType;
 };
-
