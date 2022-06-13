@@ -1,9 +1,7 @@
 #include "Vector.h"
 
 VectorQueue::VectorQueue()
-{
- 
-}
+{}
 
 void VectorQueue::push(const ValueType& value)
 {
