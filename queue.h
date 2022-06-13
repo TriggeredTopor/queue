@@ -1,83 +1,48 @@
 #pragma once
 #include <iostream>
-using Value = double;
 
-class Queue{
+using ValueType = double;
+
+enum QueueContainer {
+    Vector,
+    List,
+};
+
+
+class IQueueImplementation;
+
+class Queue
+{
 public:
 
-	Queue() = default;
- 	Queue(const Value* rawArray, const size_t size, float coef = 2.0f);
+    Queue(QueueContainer container = QueueContainer::Vector);
 
-    explicit Queue(const Queue& other);
-    Queue& operator=(const Queue& other);
+    Queue(const ValueType* valueArray, const size_t arraySize,
+        QueueContainer container = QueueContainer::Vector);
 
-    explicit Queue(Queue&& other) noexcept;
-    Queue& operator=(Queue&& other) noexcept;
+    explicit Queue(const Queue& copyStack);
+    Queue& operator=(const Queue& copyStack);
 
-	~Queue();
-// push new elem
-	void pushBack();
-// pops first elem 
-	void popFront();
-// acces first elem
-	void front();
-// access last elem 
-	void back();
-// if empty true else falce
-	void empty();
-// swaps two queues 
-	void swap();
+
+    Queue(Queue&& moveStack) noexcept;
+    Queue& operator=(Queue&& moveStack) noexcept;
+
+    ~Queue();
+
+
+    void push(const ValueType& value);
+
+    void pop();
+
+    const ValueType& top() const;
+
+    bool isEmpty() const;
 
     size_t size() const;
-
-
-    size_t capacity() const;
-
-
-    double loadFactor() const;
-
-
-    Value& operator[](size_t idx);
-    const Value& operator[](size_t idx) const;
-
-
-    long long find(const Value& value) const;
-   
-
-    void reserve(size_t capacity);
-
-
-    void shrinkToFit();
-
-	class Iterator
-    {
-        Value* _ptr;
-    public:
-        explicit Iterator(Value* ptr);
-    
-        Value& operator*();
-    
-        const Value& operator*() const;
-    
-        Value* operator->();
-    
-        const Value* operator->() const;
-    
-        Iterator operator++();
-    
-        Iterator operator++(int);
-    
-        bool operator==(const Iterator& other) const;
-    
-        bool operator!=(const Iterator& other) const;
-    };
-
-    Iterator begin();
-    Iterator end();
 private:
-    Value* _data = nullptr;
-    size_t _size = 0;
-    size_t _capacity = 0;
-    float _multiplicativeCoef = 2.0f;
+
+    IQueueImplementation* _pimpl = nullptr;
+
+    QueueContainer _containerType;
 };
-}
+
