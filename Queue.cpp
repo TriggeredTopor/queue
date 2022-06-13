@@ -10,18 +10,20 @@ Queue::Queue(QueueContainer container)
 {
     switch (container)
     {
-    case QueueContainer::List: 
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());    // конкретизируйте под ваши конструкторы, если надо
-        break;
-    }
-    case QueueContainer::Vector: 
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());    // конкретизируйте под ваши конструкторы, если надо
-        break;
-    }
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        case QueueContainer::List: 
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());    // конкретизируйте под ваши конструкторы, если надо
+            break;
+        }
+            
+        case QueueContainer::Vector: 
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());    // конкретизируйте под ваши конструкторы, если надо
+            break;
+        }
+            
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 }
 
@@ -30,13 +32,13 @@ Queue::Queue(const ValueType* valueArray, const size_t arraySize, QueueContainer
 {
     switch (_containerType)
     {
-    case QueueContainer::List:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
-        break;
-    }
+        case QueueContainer::List:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
+            break;
+        }
 
-    case QueueContainer::Vector:
+        case QueueContainer::Vector:
     {
         _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
         break;
@@ -57,20 +59,20 @@ Queue::Queue(const Queue& copyStack)
 {
     switch (_containerType)
     {
-    case QueueContainer::List:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
-        break;
-    }
+        case QueueContainer::List:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
+            break;
+        }
 
-    case QueueContainer::Vector:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
-        break;
-    }
+        case QueueContainer::Vector:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
+            break;
+        }
 
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 
     std::vector<ValueType> temparray;
@@ -103,19 +105,19 @@ Queue& Queue::operator=(const Queue& copyStack)
 
     switch (copyStack._containerType)
     {
-    case QueueContainer::List:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
-        break;
-    }
+        case QueueContainer::List:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
+            break;
+        }
 
-    case QueueContainer::Vector:
-    {
-        _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
-        break;
-    }
-    default:
-        throw std::runtime_error("Неизвестный тип контейнера");
+        case QueueContainer::Vector:
+        {
+            _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
+            break;
+        }
+        default:
+            throw std::runtime_error("Неизвестный тип контейнера");
     }
 
     std::vector<ValueType> temparray;
@@ -179,11 +181,13 @@ Queue& Queue::operator=(Queue&& moveStack) noexcept
             _pimpl = static_cast<IQueueImplementation*>(new ListQueue());
             break;
         }
+            
         case QueueContainer::Vector:
         {
             _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
             break;
         }
+            
         default:
             throw std::runtime_error("Неизвестный тип контейнера");
     }
