@@ -116,6 +116,7 @@ Queue& Queue::operator=(const Queue& copyStack)
             _pimpl = static_cast<IQueueImplementation*>(new VectorQueue());
             break;
         }
+            
         default:
             throw std::runtime_error("Неизвестный тип контейнера");
     }
