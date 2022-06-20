@@ -93,7 +93,8 @@ Queue::Queue(const Queue& copyStack)
     {
         _pimpl->push(temparray[k]);
     }
-
+    
+    temparray.clear();
 }
 
 Queue& Queue::operator=(const Queue& copyStack)
@@ -140,6 +141,8 @@ Queue& Queue::operator=(const Queue& copyStack)
         _pimpl->push(temparray[k]);
     }
 
+    temparray.clear();
+    
     return *this;
 }
 
