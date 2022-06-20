@@ -75,26 +75,26 @@ Queue::Queue(const Queue& copyStack)
             throw std::runtime_error("Неизвестный тип контейнера");
     }
 
-    std::vector<ValueType> temparray;
-    const int tempsize = copyStack.size();
+    std::vector<ValueType> tempArray;
+    const int tempSize = copyStack.size();
 
-    for (int i = 0; i < tempsize; i++)
+    for (int i = 0; i < tempSize; i++)
     {
-        temparray.push_back(copyStack._pimpl->top());
+        tempArray.push_back(copyStack._pimpl->top());
         copyStack._pimpl->pop();
     }
 
-    for (int j = 0; j < tempsize; j++)
+    for (int j = 0; j < tempSize; j++)
     {
-        copyStack._pimpl->push(temparray[j]);
+        copyStack._pimpl->push(tempArray[j]);
     }
 
-    for (int k = 0; k < tempsize; k++)
+    for (int k = 0; k < tempSize; k++)
     {
-        _pimpl->push(temparray[k]);
+        _pimpl->push(tempArray[k]);
     }
     
-    temparray.clear();
+    tempArray.clear();
 }
 
 Queue& Queue::operator=(const Queue& copyStack)
@@ -122,26 +122,26 @@ Queue& Queue::operator=(const Queue& copyStack)
             throw std::runtime_error("Неизвестный тип контейнера");
     }
 
-    std::vector<ValueType> temparray;
-    const int tempsize = copyStack.size();
+    std::vector<ValueType> tempArray;
+    const int tempSize = copyStack.size();
 
-    for (int i = 0; i < tempsize; i++)
+    for (int i = 0; i < tempSize; i++)
     {
-        temparray.push_back(copyStack._pimpl->top());
+        tempArray.push_back(copyStack._pimpl->top());
         copyStack._pimpl->pop();
     }
 
-    for (int j = 0; j < tempsize; j++)
+    for (int j = 0; j < tempSize; j++)
     {
-        copyStack._pimpl->push(temparray[j]);
+        copyStack._pimpl->push(tempArray[j]);
     }
 
-    for (int k = 0; k < tempsize; k++)
+    for (int k = 0; k < tempSize; k++)
     {
-        _pimpl->push(temparray[k]);
+        _pimpl->push(tempArray[k]);
     }
 
-    temparray.clear();
+    tempArray.clear();
     
     return *this;
 }
